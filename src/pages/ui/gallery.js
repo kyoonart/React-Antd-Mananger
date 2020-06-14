@@ -28,7 +28,7 @@ export default class Gallery extends React.Component{
             >
                 <Card.Meta
                     title="React Admin"
-                    description="I Love you"
+                    description="I Love Imooc"
                 />
             </Card>
         ))

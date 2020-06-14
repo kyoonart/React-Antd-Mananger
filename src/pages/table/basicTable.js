@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, Table, Modal, Button, message} from 'antd';
-// import axios from './../../axios/index'
-// import Utils from './../../utils/utils';
+import axios from './../../axios/index'
+import Utils from './../../utils/utils';
 export default class BasicTable extends React.Component{
 
     state={
@@ -51,36 +51,36 @@ export default class BasicTable extends React.Component{
         this.setState({
             dataSource: data
         })
-        // this.request();
+        this.request();
     }
 
     // 动态获取mock数据
-    // request = ()=>{
-    //     let _this = this;
-    //     axios.ajax({
-    //         url:'/table/list',
-    //         data:{
-    //             params:{
-    //                 page:this.params.page
-    //             }
-    //         }
-    //     }).then((res)=>{
-    //         if(res.code == 0){
-    //             res.result.list.map((item, index) => {
-    //                 item.key = index;
-    //             })
-    //             this.setState({
-    //                 dataSource2:res.result.list,
-    //                 selectedRowKeys:[],
-    //                 selectedRows:null,
-    //                 pagination: Utils.pagination(res,(current)=>{
-    //                     _this.params.page = current;
-    //                     this.request();
-    //                 })
-    //             })
-    //         }
-    //     })
-    // }
+    request = ()=>{
+        let _this = this;
+        axios.ajax({
+            url:'/table/list',
+            data:{
+                params:{
+                    page:this.params.page
+                }
+            }
+        }).then((res)=>{
+            if(res.code == 0){
+                res.result.list.map((item, index) => {
+                    item.key = index;
+                })
+                this.setState({
+                    dataSource2:res.result.list,
+                    selectedRowKeys:[],
+                    selectedRows:null,
+                    pagination: Utils.pagination(res,(current)=>{
+                        _this.params.page = current;
+                        this.request();
+                    })
+                })
+            }
+        })
+    }
 
     onRowClick = (record,index)=>{
         let selectKey = [index];
