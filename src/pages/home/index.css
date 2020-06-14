@@ -1,9 +1,0 @@
-.home-warp {
-  height: calc(60vh);
-  font-size: 20px;
-  display: flex;
-  margin: 0 auto;
-  align-items: center;
-  justify-content: center;
-  color: red;
-}
